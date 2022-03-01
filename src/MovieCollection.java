@@ -227,7 +227,6 @@ public class MovieCollection
 
     sortStrings(cast);
 
-
     // now, display them all to the user
     for (int i = 0; i < cast.size(); i++)
     {
@@ -330,7 +329,42 @@ public class MovieCollection
   
   private void listGenres()
   {
-    /* TASK 5: IMPLEMENT ME! */
+    // adds all genres to an array list
+    ArrayList<String> allGenres = new ArrayList<>();
+    for (int i = 0; i < movies.size(); i++)
+    {
+      String[] genres = movies.get(i).getGenres().split("\\|");
+      for (int j = 0; j < genres.length; j++)
+      {
+        allGenres.add(genres[j]);
+      }
+    }
+
+    // remove duplicates
+    for (int k = 0; k < allGenres.size(); k++)
+    {
+      for (int l = k + 1; l < allGenres.size() - 1; l++)
+      {
+        if (allGenres.get(k).equals(allGenres.get(l)))
+        {
+          allGenres.remove(l);
+          l--;
+        }
+      }
+    }
+
+    // organize
+    sortStrings(allGenres);
+
+    // print
+    for (int i = 0; i < allGenres.size(); i++)
+    {
+
+      // this will print index 0 as choice 1 in the results list; better for user!
+      int choiceNum = i + 1;
+
+      System.out.println("" + choiceNum + ". " + allGenres.get(i));
+    }
   }
   
   private void listHighestRated()
@@ -384,13 +418,6 @@ public class MovieCollection
     {
       // Print out the exception that occurred
       System.out.println("Unable to access " + exception.getMessage());
-    }
-  }
-  private void organize(ArrayList<String> toOrganize)
-  {
-    for (int i = 0; i < toOrganize.size(); i++)
-    {
-
     }
   }
 }
