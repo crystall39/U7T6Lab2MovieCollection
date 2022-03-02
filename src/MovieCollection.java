@@ -165,6 +165,39 @@ public class MovieCollection
     }
   }
 
+  private void sortRating(ArrayList<Movie> listToSort)
+  {
+    for (int j = 1; j < listToSort.size(); j++)
+    {
+      Movie temp = listToSort.get(j);
+      double rating = temp.getUserRating();
+
+      int possibleIndex = j;
+      while (possibleIndex > 0 && rating > listToSort.get(possibleIndex - 1).getUserRating()) {
+        listToSort.set(possibleIndex, listToSort.get(possibleIndex - 1));
+        possibleIndex--;
+      }
+      listToSort.set(possibleIndex, temp);
+    }
+  }
+
+  private void sortRevenue(ArrayList<Movie> listToSort)
+  {
+    for (int j = 1; j < listToSort.size(); j++)
+    {
+      Movie temp = listToSort.get(j);
+      double revenue = temp.getRevenue();
+
+      int possibleIndex = j;
+      while (possibleIndex > 0 && revenue > listToSort.get(possibleIndex - 1).getRevenue())
+      {
+        listToSort.set(possibleIndex, listToSort.get(possibleIndex - 1));
+        possibleIndex--;
+      }
+      listToSort.set(possibleIndex, temp);
+    }
+  }
+
   private void displayMovieInfo(Movie movie)
   {
     System.out.println();
@@ -411,7 +444,16 @@ public class MovieCollection
   
   private void listHighestRated()
   {
-    //start here
+    Movie[] top50 = new Movie[50];
+    for (int i = 0; i < 50; i++)
+    {
+      double highest = 0;
+      int j = 0;
+      while (highest < movies.get(i).getUserRating() && i < 50)
+      {
+
+      }
+    }
 
     // now, display them all to the user
     for (int i = 0; i < movieRatings.size(); i++)
