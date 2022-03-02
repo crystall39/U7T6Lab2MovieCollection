@@ -444,26 +444,15 @@ public class MovieCollection
   
   private void listHighestRated()
   {
-    Movie[] top50 = new Movie[50];
-    for (int i = 0; i < 50; i++)
-    {
-      double highest = 0;
-      int j = 0;
-      while (highest < movies.get(i).getUserRating() && i < 50)
-      {
-
-      }
-    }
+    sortRating(movies);
 
     // now, display them all to the user
-    for (int i = 0; i < movieRatings.size(); i++)
+    for (int i = 0; i < 50; i++)
     {
-      String title = movieRatings.get(i).getTitle();
-
       // this will print index 0 as choice 1 in the results list; better for user!
       int choiceNum = i + 1;
 
-      System.out.println("" + choiceNum + ". " + movieRatings.get(i).getTitle() + ": " + movieRatings.get(i).getUserRating());
+      System.out.println("" + choiceNum + ". " + movies.get(i).getTitle() + ": " + movies.get(i).getUserRating());
     }
 
     System.out.println("Which movie would you like to learn more about?");
@@ -472,7 +461,7 @@ public class MovieCollection
     int choice = scanner.nextInt();
     scanner.nextLine();
 
-    Movie selectedMovie = movieRatings.get(choice - 1);
+    Movie selectedMovie = movies.get(choice - 1);
 
     displayMovieInfo(selectedMovie);
 
@@ -482,7 +471,29 @@ public class MovieCollection
   
   private void listHighestRevenue()
   {
-    /* TASK 6: IMPLEMENT ME! */
+    sortRevenue(movies);
+
+    // now, display them all to the user
+    for (int i = 0; i < 50; i++)
+    {
+      // this will print index 0 as choice 1 in the results list; better for user!
+      int choiceNum = i + 1;
+
+      System.out.println("" + choiceNum + ". " + movies.get(i).getTitle() + ": " + movies.get(i).getRevenue());
+    }
+
+    System.out.println("Which movie would you like to learn more about?");
+    System.out.print("Enter number: ");
+
+    int choice = scanner.nextInt();
+    scanner.nextLine();
+
+    Movie selectedMovie = movies.get(choice - 1);
+
+    displayMovieInfo(selectedMovie);
+
+    System.out.println("\n ** Press Enter to Return to Main Menu **");
+    scanner.nextLine();
   }
 
   private void importMovieList(String fileName)
